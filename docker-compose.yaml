@@ -14,6 +14,9 @@ services:
         source: open-webui
         target: /app/backend/data
         volume: {}
+    environment:
+      - WEBUI_AUTH_TRUSTED_EMAIL_HEADER=Cf-Access-Authenticated-User-Email
+      - HOST=127.0.0.1
 networks:
   cloudflared-network:
     name: cloudflared-network
