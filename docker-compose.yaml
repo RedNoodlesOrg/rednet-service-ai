@@ -1,7 +1,25 @@
-name: "PLACEHOLDER"
+name: openwebui
 services:
-
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:ollama
+    networks:
+      cloudflared-network: null
+    restart: unless-stopped
+    volumes:
+      - type: volume
+        source: ollama
+        target: /root/.ollama
+        volume: {}
+      - type: volume
+        source: open-webui
+        target: /app/backend/data
+        volume: {}
 networks:
   cloudflared-network:
     name: cloudflared-network
     external: true
+volumes:
+  ollama:
+    name: openwebui_ollama
+  open-webui:
+    name: openwebui_open-webui
